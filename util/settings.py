@@ -12,7 +12,8 @@ Settings for PatentCrawler
 ROOT = os.path.dirname(os.path.dirname(__file__))
 
 # SOURCE
-SOURCE = os.path.join(ROOT, 'source')
+# SOURCE = os.path.join(ROOT, 'source')
+SOURCE = '/home/wanglei/data/'
 
 # util
 UTIL = os.path.join(ROOT, 'util')
@@ -44,3 +45,7 @@ CRFCWSModelPath = "D:/javaworkspace/HanLP-1.6.1/data/model/crf/pku199801/cws.bin
 MODELS = os.path.join(ROOT, 'models')
 
 WORD2VEC = os.path.join(MODELS, 'word2vec')
+
+# patent term dict about 45227 phrases
+TERM_DICT = '/home/wanglei/data/merge_term_dict.txt'
+
