@@ -3,9 +3,9 @@
 """
 import os
 import unittest
-from PatentCrawler.util.preprocessing import PreprocessingPatents
-from PatentCrawler.util.pyhlp import HanLPAPI
-from PatentCrawler.util.settings import CLAIMS, CRFPOSModelPath
+from PatentRewrite.util.preprocessing import PreprocessingPatents
+from PatentRewrite.util.pyhlp import HanLPAPI
+from PatentRewrite.util.settings import CLAIMS, TEMP_PATENTS
 
 @unittest.skip("TestStringMethods")
 class TestStringMethods(unittest.TestCase):
@@ -25,8 +25,8 @@ class TestStringMethods(unittest.TestCase):
             s.split(2)
 
 
-@unittest.skip("TestPreprocessingPatents")
 class TestPreprocessingPatents(unittest.TestCase):
+    @unittest.skip('')
     def test_init(self):
         print(PreprocessingPatents.__doc__)
 
@@ -37,14 +37,18 @@ class TestPreprocessingPatents(unittest.TestCase):
         pp = PreprocessingPatents()
         pp.format_patents(database, text_dir)
 
-
+    @unittest.skip('')
     def test_extra_claims(self):
         database = 'F:\\workpace\\PycharmProjects\\PatentCrawler\\util\\distinct_db.db'
         text_dir = 'claims'
         pp = PreprocessingPatents()
         pp.format_claims(database, text_dir)
 
+    def test_segment_patent_from_sqlite(self):
+        pp = PreprocessingPatents()
+        pp.segment_patent_from_sqlite()
 
+@unittest.skip('')
 class TestHanLPAPI(unittest.TestCase):
     def test_hanlpapi(self):
         hanlpapi = HanLPAPI()

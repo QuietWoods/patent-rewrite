@@ -4,8 +4,9 @@
 # @FileName: tools.py
 # @Software: PyCharm
 # @Email    ：1258481281@qq.com
-from PatentCrawler.util.gensim_word2vec import Word2vec, Sentences
-from PatentCrawler.util.settings import WORD2VEC, PATENTS
+import os
+from PatentRewrite.util.gensim_word2vec import Word2vec, Sentences
+from PatentRewrite.util.settings import WORD2VEC, PATENTS, TEMP_PATENTS
 
 
 def train_word2vec():
@@ -16,4 +17,5 @@ def train_word2vec():
 
 
 if __name__ == "__main__":
+
     train_word2vec()

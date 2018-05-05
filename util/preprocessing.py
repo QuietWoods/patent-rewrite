@@ -2,7 +2,18 @@ import os
 import re
 import shutil
 from .sqlite_to_txt import SqliteUtil
-from .pyhlp import HanLPAPI
+
+from PatentRewrite.util.settings import TERM_DICT, PATENTS_DB, TEMP_PATENTS
+import sqlite3
+import logging
+import jieba
+# 加载自定义词典
+jieba.load_userdict(TERM_DICT)
+
+FORMAT = '%(asctime)-15s %(user)-8s %(message)s'
+logging.basicConfig(format=FORMAT)
+d = {'user': 'wl'}
+
 
 class PreprocessingPatents:
     """专利文本预处理"""
@@ -173,6 +184,36 @@ class PreprocessingPatents:
         if sentence:
             return
 
+    def segment_patent_from_sqlite(self):
+        """
+        使用jieba分词，自定义词典
+        :return:
+        """
+        # 连接专利全文数据库
+        conn = sqlite3.connect(PATENTS_DB)
+        logging.info('Opened database successfully')
+        c = conn.cursor()
+        cursor = c.execute('SELECT * from patent')
+        i = 0
+        if not os.path.exists(TEMP_PATENTS):
+            os.mkdir(TEMP_PATENTS)
+        for row in cursor:
+            i += 1
+            fname = row[1] + '.txt' # 以专利号为文件名
+            with open(os.path.join(TEMP_PATENTS, fname), 'w', encoding='utf-8') as w:
+                # 标题
+                w.write(' '.join(jieba.cut(row[2])))
+                w.write('\n\n')
+                # 摘要
+                w.write(' '.join(jieba.cut(row[3])).replace('。 ', '。\n'))
+                w.write('\n\n')
+                # 权利要求
+                w.write(' '.join(jieba.cut(row[4])).replace('。 ', '。\n'))
+                w.write('\n\n')
+                # 说明书
+                w.write(' '.join(jieba.cut(row[5])).replace('。 ', '。\n'))
+            if i >= 10:
+                break
 
 
 

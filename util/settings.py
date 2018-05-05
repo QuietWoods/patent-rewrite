@@ -12,14 +12,15 @@ Settings for PatentCrawler
 ROOT = os.path.dirname(os.path.dirname(__file__))
 
 # SOURCE
-# SOURCE = os.path.join(ROOT, 'source')
-SOURCE = '/home/wanglei/data/'
+SOURCE = os.path.join(ROOT, 'source')
+# SOURCE = '/home/wanglei/data/'
 
 # util
 UTIL = os.path.join(ROOT, 'util')
 
 # 数据库路径
-DISTINCT_DB = os.path.join(UTIL, "distinct_db.db")
+# DISTINCT_DB = os.path.join(UTIL, "distinct_db.db")
+PATENTS_DB = 'F:\\workpace\\PycharmProjects\\PatentCrawler\\util\\patents.db'
 
 # 专利全文， 未分词
 PATENTS = os.path.join(SOURCE, 'patents')
@@ -47,5 +48,6 @@ MODELS = os.path.join(ROOT, 'models')
 WORD2VEC = os.path.join(MODELS, 'word2vec')
 
 # patent term dict about 45227 phrases
-TERM_DICT = '/home/wanglei/data/merge_term_dict.txt'
+# TERM_DICT = '/home/wanglei/data/merge_term_dict.txt'
+TERM_DICT = 'D:\\javaworkspace\\HanLP-1.6.1\\data\\dictionary\\custom\\merge_term_dict.txt'
 
