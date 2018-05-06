@@ -1,9 +1,8 @@
 import os
 import re
 import shutil
-from .sqlite_to_txt import SqliteUtil
-
-from PatentRewrite.util.settings import TERM_DICT, PATENTS_DB, TEMP_PATENTS
+from sqlite_to_txt import SqliteUtil
+from settings import TERM_DICT, PATENTS_DB, TEMP_PATENTS
 import sqlite3
 import logging
 import jieba
@@ -212,12 +211,13 @@ class PreprocessingPatents:
                 w.write('\n\n')
                 # 说明书
                 w.write(' '.join(jieba.cut(row[5])).replace('。 ', '。\n'))
-            if i >= 10:
-                break
+            #if i >= 10:
+            #    break
 
 
 
 
-
-
+if __name__ == "__main__":
+    pp = PreprocessingPatents()
+    pp.segment_patent_from_sqlite()
 
