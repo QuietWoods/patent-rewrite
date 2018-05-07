@@ -1,17 +1,15 @@
 import os
 import re
+import sys
+from PatentRewrite.patentLog import LOG
 import shutil
-from sqlite_to_txt import SqliteUtil
-from settings import TERM_DICT, PATENTS_DB, TEMP_PATENTS
+from PatentRewrite.util.sqlite_to_txt import SqliteUtil
+from PatentRewrite.util.settings import TERM_DICT, PATENTS_DB, TEMP_PATENTS
 import sqlite3
 import logging
 import jieba
 # 加载自定义词典
-jieba.load_userdict(TERM_DICT)
-
-FORMAT = '%(asctime)-15s %(user)-8s %(message)s'
-logging.basicConfig(format=FORMAT)
-d = {'user': 'wl'}
+# jieba.load_userdict(TERM_DICT)
 
 
 class PreprocessingPatents:
@@ -211,13 +209,25 @@ class PreprocessingPatents:
                 w.write('\n\n')
                 # 说明书
                 w.write(' '.join(jieba.cut(row[5])).replace('。 ', '。\n'))
-            #if i >= 10:
-            #    break
+            if i >= 10:
+                break
 
+    def use_log(self):
+        """
 
+        :return:
+        """
+        i = 1
+        LOG.error(i)
+        # 测试代码
+        for i in range(50):
+            LOG.error(i)
+            LOG.debug(i)
+        LOG.critical("Database has gone away")
 
 
 if __name__ == "__main__":
     pp = PreprocessingPatents()
-    pp.segment_patent_from_sqlite()
+    # pp.segment_patent_from_sqlite()
+    pp.use_log()
 

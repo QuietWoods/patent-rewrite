@@ -45,9 +45,15 @@ CRFCWSModelPath = "D:/javaworkspace/HanLP-1.6.1/data/model/crf/pku199801/cws.bin
 # models
 MODELS = os.path.join(ROOT, 'models')
 
-WORD2VEC = os.path.join(MODELS, 'word2vec')
+WORD2VEC = MODELS
 
 # patent term dict about 45227 phrases
 # TERM_DICT = '/home/wanglei/data/merge_term_dict.txt'
 TERM_DICT = 'D:\\javaworkspace\\HanLP-1.6.1\\data\\dictionary\\custom\\merge_term_dict.txt'
+
+# 停用词表
+STOP_WORDS_DICT = 'D:\\javaworkspace\\HanLP-1.6.1\\data\\dictionary\\stopwords2.txt'
+
+# word2vec model dir
+
 
